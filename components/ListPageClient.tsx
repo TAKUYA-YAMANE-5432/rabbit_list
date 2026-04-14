@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { ItemWithLocation, Location } from '@/types/database'
+import { AddCustomLocationForm } from '@/components/AddCustomLocationForm'
 
 interface Props {
   items: ItemWithLocation[]
@@ -30,6 +31,11 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
     router.push(buildUrl(locationFilter, sortDir === 'asc' ? 'desc' : 'asc'))
   }
 
+  // 選択中の場所を特定（編集ボタン用）
+  const selectedLocation = locationFilter
+    ? locations.find((loc) => loc.name === locationFilter) ?? null
+    : null
+
   return (
     <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-6">
       {/* フィルター・ソートバー */}
@@ -56,6 +62,16 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
           場所名
           <span className="text-xs">{sortDir === 'asc' ? '↑' : '↓'}</span>
         </button>
+
+        {/* 場所選択中：編集ボタン */}
+        {selectedLocation && (
+          <Link
+            href={`/locations/${selectedLocation.id}`}
+            className="flex items-center gap-1.5 bg-[#FF8FAB] text-white rounded-full px-4 py-2 text-sm font-bold hover:bg-[#E05A7A] transition-all shadow-sm"
+          >
+            ✏️ 編集・追加
+          </Link>
+        )}
 
         <span className="text-sm text-[#C4A5C4] ml-auto bg-[#FFE8F0] px-3 py-1 rounded-full font-medium">
           🎁 {items.length} 件
@@ -156,6 +172,9 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
           </div>
         </>
       )}
+
+      {/* カスタム場所追加フォーム */}
+      <AddCustomLocationForm />
     </main>
   )
 }
