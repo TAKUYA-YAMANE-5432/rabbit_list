@@ -1,0 +1,103 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "お土産リスト" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e6]:
+          - link "地図" [ref=e7] [cursor=pointer]:
+            - /url: /
+          - link "一覧" [ref=e8] [cursor=pointer]:
+            - /url: /list
+          - button "ログアウト" [ref=e10]
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - combobox "場所で絞り込み" [ref=e13]:
+          - option "すべての場所" [selected]
+          - option "三重県"
+          - option "京都府"
+          - option "佐賀県"
+          - option "兵庫県"
+          - option "北海道"
+          - option "千葉県"
+          - option "和歌山県"
+          - option "埼玉県"
+          - option "大分県"
+          - option "大阪府"
+          - option "奈良県"
+          - option "宮城県"
+          - option "宮崎県"
+          - option "富山県"
+          - option "山口県"
+          - option "山形県"
+          - option "山梨県"
+          - option "岐阜県"
+          - option "岡山県"
+          - option "岩手県"
+          - option "島根県"
+          - option "広島県"
+          - option "徳島県"
+          - option "愛媛県"
+          - option "愛知県"
+          - option "新潟県"
+          - option "東京都"
+          - option "栃木県"
+          - option "沖縄県"
+          - option "滋賀県"
+          - option "熊本県"
+          - option "石川県"
+          - option "神奈川県"
+          - option "福井県"
+          - option "福岡県"
+          - option "福島県"
+          - option "秋田県"
+          - option "群馬県"
+          - option "茨城県"
+          - option "長崎県"
+          - option "長野県"
+          - option "青森県"
+          - option "静岡県"
+          - option "香川県"
+          - option "高知県"
+          - option "鳥取県"
+          - option "鹿児島県"
+        - button "場所名昇順に並べ替え" [ref=e14]:
+          - text: 場所名
+          - generic [ref=e15]: ↓
+        - generic [ref=e16]: 3 件
+      - table [ref=e18]:
+        - rowgroup [ref=e19]:
+          - row "お土産名 場所 購入日 メモ" [ref=e20]:
+            - columnheader "お土産名" [ref=e21]
+            - columnheader "場所" [ref=e22]
+            - columnheader "購入日" [ref=e23]
+            - columnheader "メモ" [ref=e24]
+            - columnheader [ref=e25]
+        - rowgroup [ref=e26]:
+          - row "じゃがポックル 北海道 2024/8/10 北海道限定のお菓子 詳細 →" [ref=e27]:
+            - cell "じゃがポックル" [ref=e28]
+            - cell "北海道" [ref=e29]
+            - cell "2024/8/10" [ref=e30]
+            - cell "北海道限定のお菓子" [ref=e31]
+            - cell "詳細 →" [ref=e32]:
+              - link "詳細 →" [ref=e33] [cursor=pointer]:
+                - /url: /locations/e1dbf72d-399f-47ae-95e0-dbbff561fc16
+          - row "白い恋人 北海道 2024/8/11 — 詳細 →" [ref=e34]:
+            - cell "白い恋人" [ref=e35]
+            - cell "北海道" [ref=e36]
+            - cell "2024/8/11" [ref=e37]
+            - cell "—" [ref=e38]
+            - cell "詳細 →" [ref=e39]:
+              - link "詳細 →" [ref=e40] [cursor=pointer]:
+                - /url: /locations/e1dbf72d-399f-47ae-95e0-dbbff561fc16
+          - row "東京ばな奈 東京都 2024/3/20 お土産の定番 詳細 →" [ref=e41]:
+            - cell "東京ばな奈" [ref=e42]
+            - cell "東京都" [ref=e43]
+            - cell "2024/3/20" [ref=e44]
+            - cell "お土産の定番" [ref=e45]
+            - cell "詳細 →" [ref=e46]:
+              - link "詳細 →" [ref=e47] [cursor=pointer]:
+                - /url: /locations/6fa259a7-77fa-452e-85f1-951c7df7baf1
+  - button "Open Next.js Dev Tools" [ref=e53] [cursor=pointer]:
+    - img [ref=e54]
+  - alert [ref=e57]

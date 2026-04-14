@@ -1,0 +1,74 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "お土産リスト" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e6]:
+          - link "地図" [ref=e7] [cursor=pointer]:
+            - /url: /
+          - link "一覧" [ref=e8] [cursor=pointer]:
+            - /url: /list
+          - button "ログアウト" [ref=e10]
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - combobox "場所で絞り込み" [ref=e13]:
+          - option "すべての場所" [selected]
+          - option "三重県"
+          - option "京都府"
+          - option "佐賀県"
+          - option "兵庫県"
+          - option "北海道"
+          - option "千葉県"
+          - option "和歌山県"
+          - option "埼玉県"
+          - option "大分県"
+          - option "大阪府"
+          - option "奈良県"
+          - option "宮城県"
+          - option "宮崎県"
+          - option "富山県"
+          - option "山口県"
+          - option "山形県"
+          - option "山梨県"
+          - option "岐阜県"
+          - option "岡山県"
+          - option "岩手県"
+          - option "島根県"
+          - option "広島県"
+          - option "徳島県"
+          - option "愛媛県"
+          - option "愛知県"
+          - option "新潟県"
+          - option "東京都"
+          - option "栃木県"
+          - option "沖縄県"
+          - option "滋賀県"
+          - option "熊本県"
+          - option "石川県"
+          - option "神奈川県"
+          - option "福井県"
+          - option "福岡県"
+          - option "福島県"
+          - option "秋田県"
+          - option "群馬県"
+          - option "茨城県"
+          - option "長崎県"
+          - option "長野県"
+          - option "青森県"
+          - option "静岡県"
+          - option "香川県"
+          - option "高知県"
+          - option "鳥取県"
+          - option "鹿児島県"
+        - button "場所名降順に並べ替え" [ref=e14]:
+          - text: 場所名
+          - generic [ref=e15]: ↑
+        - generic [ref=e16]: 0 件
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: お土産がまだ登録されていません
+        - link "地図から場所を選んで追加する" [ref=e19] [cursor=pointer]:
+          - /url: /
+  - button "Open Next.js Dev Tools" [ref=e25] [cursor=pointer]:
+    - img [ref=e26]
+  - alert [ref=e29]

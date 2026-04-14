@@ -1,0 +1,15 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - heading "お土産リスト" [level=1] [ref=e4]
+      - paragraph [ref=e5]: パスワードを入力してください
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: パスワード
+          - textbox "パスワード" [ref=e9]:
+            - /placeholder: パスワードを入力
+        - alert [ref=e21]: パスワードが正しくありません
+        - button "ログイン" [ref=e10]
+  - button "Open Next.js Dev Tools" [ref=e17] [cursor=pointer]:
+    - img [ref=e18]
+  - alert [ref=e11]

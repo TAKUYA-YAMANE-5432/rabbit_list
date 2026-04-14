@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "sbp_c29b2138bff268f4743b653f4d56e580b5f4506e"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "github": {
+      "enable": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_xxxxxxxxxxxx"
+      }
+    },
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--system-certs",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant"
+      ]
+    },
+    "contetxt7": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "ctx7sk-52cc5a0d-a789-4209-b076-6c3dba0d6787"
+      ]
+    }
+  }
+}

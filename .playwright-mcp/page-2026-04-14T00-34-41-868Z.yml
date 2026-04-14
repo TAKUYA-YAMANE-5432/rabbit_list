@@ -1,0 +1,52 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "お土産リスト" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e6]:
+          - link "地図" [ref=e7] [cursor=pointer]:
+            - /url: /
+          - link "一覧" [ref=e8] [cursor=pointer]:
+            - /url: /list
+          - button "ログアウト" [ref=e10]
+    - main [ref=e11]:
+      - link "← 地図へ戻る" [ref=e12] [cursor=pointer]:
+        - /url: /
+      - heading "北海道" [level=1] [ref=e13]
+      - generic [ref=e14]:
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - generic [ref=e17]:
+              - generic [ref=e18]:
+                - paragraph [ref=e19]: 白い恋人
+                - paragraph [ref=e20]: 2024/8/11
+              - generic [ref=e21]:
+                - button "編集" [ref=e22]
+                - button "削除" [ref=e23]
+          - listitem [ref=e24]:
+            - generic [ref=e25]:
+              - generic [ref=e26]:
+                - paragraph [ref=e27]: じゃがポックル
+                - paragraph [ref=e28]: 2024/8/10
+                - paragraph [ref=e29]: 北海道限定のお菓子
+              - generic [ref=e30]:
+                - button "編集" [ref=e31]
+                - button "削除" [ref=e32]
+        - generic [ref=e33]:
+          - heading "お土産を追加" [level=2] [ref=e34]
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - generic [ref=e37]: お土産名 *
+              - textbox "お土産名 *" [ref=e38]:
+                - /placeholder: "例: じゃがポックル"
+            - generic [ref=e39]:
+              - generic [ref=e40]: 購入日 *
+              - textbox "購入日 *" [ref=e41]
+            - generic [ref=e42]:
+              - generic [ref=e43]: メモ
+              - textbox "メモ" [ref=e44]:
+                - /placeholder: 任意のメモ
+            - button "追加する" [ref=e45]
+  - button "Open Next.js Dev Tools" [ref=e51] [cursor=pointer]:
+    - img [ref=e52]
