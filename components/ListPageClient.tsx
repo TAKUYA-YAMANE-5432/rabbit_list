@@ -82,15 +82,9 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
       {items.length === 0 && (
         <div className="text-center py-16">
           <p className="text-5xl mb-4">🐰</p>
-          <p className="text-lg font-bold text-[#C4A5C4] mb-2">
+          <p className="text-lg font-bold text-[#C4A5C4]">
             おみやげがまだ登録されていないよ
           </p>
-          <Link
-            href="/"
-            className="text-sm text-[#E05A7A] hover:underline font-medium"
-          >
-            地図から場所を選んで追加する →
-          </Link>
         </div>
       )}
 
