@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { Header } from '@/components/Header'
 import { ListPageClient } from '@/components/ListPageClient'
+import { sortLocationsByPrefectureOrder, compareByPrefectureOrder } from '@/lib/prefecture-order'
 import type { ItemWithLocation } from '@/types/database'
 
 interface PageProps {
@@ -19,8 +20,7 @@ export default async function ListPage({ searchParams }: PageProps) {
       .select('id, name, purchased_at, memo, location_id, created_at, locations(id, name, prefecture, city, is_custom, created_at)'),
     supabase
       .from('locations')
-      .select('id, name, prefecture, city, is_custom, created_at')
-      .order('name'),
+      .select('id, name, prefecture, city, is_custom, created_at'),
   ])
 
   if (itemsResult.error || locationsResult.error) {
@@ -42,20 +42,24 @@ export default async function ListPage({ searchParams }: PageProps) {
     items = items.filter((item) => item.locations?.name === locationFilter)
   }
 
-  // ソート（場所名順）
-  items = items.sort((a, b) => {
-    const nameA = a.locations?.name ?? ''
-    const nameB = b.locations?.name ?? ''
-    const cmp = nameA.localeCompare(nameB, 'ja')
-    return sortDir === 'asc' ? cmp : -cmp
-  })
+  // ソート（都道府県順：北海道→沖縄、カスタム場所は末尾）
+  items = items.sort((a, b) =>
+    compareByPrefectureOrder(
+      a.locations?.name ?? '',
+      b.locations?.name ?? '',
+      sortDir
+    )
+  )
+
+  // ドロップダウン用：都道府県順に並べ替え
+  const sortedLocations = sortLocationsByPrefectureOrder(locationsResult.data ?? [])
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       <ListPageClient
         items={items}
-        locations={locationsResult.data ?? []}
+        locations={sortedLocations}
         locationFilter={locationFilter}
         sortDir={sortDir}
       />
