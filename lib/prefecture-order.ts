@@ -49,6 +49,9 @@ const PREFECTURE_ORDER: Record<string, number> = {
   沖縄県: 47,
 }
 
+/** 都道府県名リスト（北海道→沖縄の順） */
+export const PREFECTURE_NAMES: readonly string[] = Object.keys(PREFECTURE_ORDER)
+
 /**
  * 場所名から都道府県順の番号を返す。
  * カスタム場所（PREFECTURE_ORDER に含まれない名前）は Infinity を返す。

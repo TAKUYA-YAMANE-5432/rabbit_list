@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Header } from '@/components/Header'
 import { ItemList } from '@/components/ItemList'
+import { CustomLocationInfoForm } from '@/components/CustomLocationInfoForm'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -15,7 +16,7 @@ export default async function LocationDetailPage({ params }: PageProps) {
   const [locationResult, itemsResult] = await Promise.all([
     supabase
       .from('locations')
-      .select('id, name, prefecture, city, is_custom')
+      .select('id, name, prefecture, city, is_custom, created_at')
       .eq('id', id)
       .single(),
     supabase
@@ -47,10 +48,20 @@ export default async function LocationDetailPage({ params }: PageProps) {
             <span>📍</span>
             {location.name}
           </h1>
-          {location.city && (
-            <p className="text-sm text-[#C4A5C4] mt-1">{location.city}</p>
+          {location.prefecture && !location.is_custom && (
+            <p className="text-sm text-[#C4A5C4] mt-1">{location.prefecture}</p>
+          )}
+          {location.is_custom && location.prefecture && (
+            <p className="text-sm text-[#C4A5C4] mt-1">
+              📌 {location.prefecture} に紐づけ中
+            </p>
           )}
         </div>
+
+        {/* カスタム場所のみ：場所情報の編集・削除フォーム */}
+        {location.is_custom && (
+          <CustomLocationInfoForm location={location} />
+        )}
 
         <div className="bg-white rounded-3xl border-2 border-[#FFD6E7] shadow-sm p-6">
           <ItemList
