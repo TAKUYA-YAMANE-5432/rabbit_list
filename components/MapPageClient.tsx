@@ -8,7 +8,14 @@ import { AddCustomLocationForm } from '@/components/AddCustomLocationForm'
 
 const JapanMap = dynamic(
   () => import('@/components/JapanMap').then((m) => m.JapanMap),
-  { ssr: false, loading: () => <div className="w-full h-96 bg-gray-100 animate-pulse rounded" /> }
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-96 bg-[#FFE8F0] animate-pulse rounded-3xl flex items-center justify-center">
+        <span className="text-4xl">🐰</span>
+      </div>
+    ),
+  }
 )
 
 export type LocationWithItems = Location & { items: Item[] }
@@ -40,38 +47,55 @@ export function MapPageClient({ prefectureLocations, customLocations }: Props) {
       {/* 地図 + パネル */}
       <div className="flex flex-col md:flex-row gap-4">
         {/* 地図 */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 bg-white rounded-3xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden p-2">
           <JapanMap
             activePrefectures={activePrefectures}
             onPrefectureClick={handlePrefectureClick}
             selectedPrefecture={selectedPrefecture}
           />
+          {/* 凡例 */}
+          <div className="flex items-center gap-4 px-2 pb-1 justify-end">
+            <div className="flex items-center gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-[#FF8FAB]" />
+              <span className="text-xs text-[#8B6B8C]">おみやげあり</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-[#F5E6F0]" />
+              <span className="text-xs text-[#C4A5C4]">まだなし</span>
+            </div>
+          </div>
         </div>
 
         {/* 都道府県パネル */}
         {selectedLocation && (
-          <aside className="md:w-72 bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-3">
+          <aside className="md:w-72 bg-white border-2 border-[#FFD6E7] rounded-3xl p-4 flex flex-col gap-3 shadow-md shadow-pink-50">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">
-                {selectedLocation.name}
+              <h2 className="text-lg font-bold text-[#E05A7A] flex items-center gap-1">
+                📍 {selectedLocation.name}
               </h2>
               <button
                 onClick={() => setSelectedPrefecture(null)}
                 aria-label="パネルを閉じる"
-                className="text-gray-400 hover:text-gray-600 text-xl leading-none"
+                className="w-7 h-7 flex items-center justify-center text-[#C4A5C4] hover:text-[#E05A7A] hover:bg-[#FDFAF4] rounded-full transition-all text-lg leading-none"
               >
                 ×
               </button>
             </div>
 
             {selectedLocation.items.length === 0 ? (
-              <p className="text-sm text-gray-500">まだお土産がありません</p>
+              <div className="text-center py-4">
+                <p className="text-2xl mb-1">🐰</p>
+                <p className="text-sm text-[#C4A5C4]">まだおみやげがないよ</p>
+              </div>
             ) : (
               <ul className="flex flex-col gap-2">
                 {selectedLocation.items.map((item) => (
-                  <li key={item.id} className="text-sm">
-                    <p className="font-medium text-gray-800">{item.name}</p>
-                    <p className="text-gray-500">
+                  <li
+                    key={item.id}
+                    className="bg-[#FEF6EC] rounded-2xl px-3 py-2 text-sm"
+                  >
+                    <p className="font-medium text-[#5C3D5E]">{item.name}</p>
+                    <p className="text-[#C4A5C4] text-xs mt-0.5">
                       {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
                     </p>
                   </li>
@@ -81,7 +105,7 @@ export function MapPageClient({ prefectureLocations, customLocations }: Props) {
 
             <Link
               href={`/locations/${selectedLocation.id}`}
-              className="mt-auto text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="mt-auto text-center text-sm bg-[#FFE8F0] text-[#E05A7A] font-bold py-2 rounded-full hover:bg-[#FF8FAB] hover:text-white transition-all"
             >
               詳細・編集 →
             </Link>
@@ -92,20 +116,20 @@ export function MapPageClient({ prefectureLocations, customLocations }: Props) {
       {/* カスタム場所カードリスト */}
       {customLocations.length > 0 && (
         <section className="mt-6">
-          <h2 className="text-base font-semibold text-gray-700 mb-3">
-            カスタム場所
+          <h2 className="text-sm font-bold text-[#8B6B8C] mb-3 flex items-center gap-1">
+            <span>✨</span> カスタム場所
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {customLocations.map((loc) => (
               <Link
                 key={loc.id}
                 href={`/locations/${loc.id}`}
-                className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-800 hover:border-blue-400 hover:text-blue-700 transition-colors"
+                className="px-4 py-2 bg-white border-2 border-[#FFD6E7] rounded-full text-sm font-medium text-[#8B6B8C] hover:border-[#FF8FAB] hover:text-[#E05A7A] hover:shadow-md transition-all"
               >
                 {loc.name}
                 {loc.items.length > 0 && (
-                  <span className="ml-2 text-xs text-blue-600">
-                    {loc.items.length}件
+                  <span className="ml-2 bg-[#FFD6E7] text-[#E05A7A] text-xs font-bold px-1.5 py-0.5 rounded-full">
+                    {loc.items.length}
                   </span>
                 )}
               </Link>

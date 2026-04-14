@@ -12,9 +12,9 @@ export function AddCustomLocationForm() {
   }, [state])
 
   return (
-    <section className="mt-6 border-t border-gray-200 pt-4">
-      <h2 className="text-base font-semibold text-gray-700 mb-3">
-        カスタム場所を追加
+    <section className="mt-6 border-t-2 border-[#FFE8F0] pt-5">
+      <h2 className="text-sm font-bold text-[#8B6B8C] mb-3 flex items-center gap-1">
+        <span>🗺️</span> カスタム場所を追加
       </h2>
       <form ref={formRef} action={formAction} className="flex gap-2">
         <input
@@ -22,18 +22,18 @@ export function AddCustomLocationForm() {
           type="text"
           required
           placeholder="例: 富士山、東京ディズニーランド"
-          className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 border-2 border-[#FFD6E7] rounded-full px-4 py-2 text-sm text-[#5C3D5E] placeholder-[#DDB8DD] bg-[#FDFDF8] focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
         />
         <button
           type="submit"
           disabled={isPending}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors whitespace-nowrap"
+          className="bg-[#FF8FAB] text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-[#E05A7A] disabled:opacity-50 transition-all shadow-sm whitespace-nowrap"
         >
-          {isPending ? '追加中...' : '追加'}
+          {isPending ? '追加中...' : '＋ 追加'}
         </button>
       </form>
       {state && 'error' in state && (
-        <p role="alert" className="text-red-500 text-sm mt-2">{state.error}</p>
+        <p role="alert" className="text-red-400 text-sm mt-2">{state.error}</p>
       )}
     </section>
   )

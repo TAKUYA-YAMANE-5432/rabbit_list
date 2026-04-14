@@ -41,10 +41,10 @@ export function JapanMap({
                 style={{
                   default: {
                     fill: isSelected
-                      ? '#1D4ED8'
+                      ? '#E05A7A'
                       : isActive
-                        ? '#3B82F6'
-                        : '#D1D5DB',
+                        ? '#FF8FAB'
+                        : '#F5E6F0',
                     stroke: '#FFFFFF',
                     strokeWidth: 0.5,
                     outline: 'none',
@@ -52,17 +52,17 @@ export function JapanMap({
                   },
                   hover: {
                     fill: isSelected
-                      ? '#1E40AF'
+                      ? '#C84A6A'
                       : isActive
-                        ? '#2563EB'
-                        : '#9CA3AF',
+                        ? '#FF6B8A'
+                        : '#EDD5E8',
                     stroke: '#FFFFFF',
                     strokeWidth: 0.5,
                     outline: 'none',
                     cursor: 'pointer',
                   },
                   pressed: {
-                    fill: '#1D4ED8',
+                    fill: '#C84A6A',
                     outline: 'none',
                   },
                 }}

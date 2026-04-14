@@ -27,7 +27,7 @@ export default async function HomePage() {
     .sort((a, b) => a.name.localeCompare(b.name, 'ja'))
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-[#FDFAF4]">
       <Header />
       <MapPageClient
         prefectureLocations={prefectureLocations}

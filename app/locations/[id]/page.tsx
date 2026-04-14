@@ -32,24 +32,32 @@ export default async function LocationDetailPage({ params }: PageProps) {
   const location = locationResult.data
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-[#FDFAF4]">
       <Header />
       <main className="flex-1 max-w-2xl mx-auto w-full px-4 py-6">
         <Link
           href="/"
-          className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+          className="inline-flex items-center gap-1 text-sm text-[#C4A5C4] hover:text-[#E05A7A] transition-colors bg-white border border-[#FFD6E7] px-3 py-1.5 rounded-full"
         >
           ← 地図へ戻る
         </Link>
 
-        <h1 className="text-2xl font-bold text-gray-900 mt-3 mb-6">
-          {location.name}
-        </h1>
+        <div className="mt-4 mb-6">
+          <h1 className="text-2xl font-bold text-[#E05A7A] flex items-center gap-2">
+            <span>📍</span>
+            {location.name}
+          </h1>
+          {location.city && (
+            <p className="text-sm text-[#C4A5C4] mt-1">{location.city}</p>
+          )}
+        </div>
 
-        <ItemList
-          locationId={id}
-          items={itemsResult.data ?? []}
-        />
+        <div className="bg-white rounded-3xl border-2 border-[#FFD6E7] shadow-sm p-6">
+          <ItemList
+            locationId={id}
+            items={itemsResult.data ?? []}
+          />
+        </div>
       </main>
     </div>
   )

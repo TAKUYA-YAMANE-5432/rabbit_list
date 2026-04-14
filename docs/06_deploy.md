@@ -12,30 +12,31 @@
 - [x] `npm run lint` がエラーなく通ることを確認する（警告 0 件）
 - [x] `.env.local` が `.gitignore` に含まれていることを確認する（`.env*` でカバー済み）
 - [x] 全実装ファイルをコミット済み
+- [x] `.npmrc` に `legacy-peer-deps=true` を追加（react-simple-maps の peer deps 対応）
 
 ### GitHub リポジトリ
 
-- [ ] GitHub にリポジトリを作成する
-- [ ] コードを push する
+- [x] GitHub にリポジトリを作成する
+- [x] コードを push する
 
 ### Vercel プロジェクト作成
 
-- [ ] Vercel と GitHub リポジトリを連携する
-- [ ] Framework Preset を `Next.js` に設定する
+- [x] Vercel と GitHub リポジトリを連携する
+- [x] Framework Preset を `Next.js` に設定する
 
 ### 環境変数設定（Vercel）
 
-- [ ] `AUTH_PASSWORD` を設定する
-- [ ] `NEXT_PUBLIC_SUPABASE_URL` を設定する
-- [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY` を設定する
+- [x] `AUTH_PASSWORD` を設定する
+- [x] `NEXT_PUBLIC_SUPABASE_URL` を設定する
+- [x] `NEXT_PUBLIC_SUPABASE_ANON_KEY` を設定する
 
 ### デプロイ確認
 
-- [ ] Vercel の本番 URL でアプリが正常に表示される
+- [x] Vercel の本番 URL でアプリが正常に表示される
 - [ ] ログイン → 地図画面 → 一覧画面 → 場所詳細画面の動線が通ることを確認する
 - [ ] お土産の追加・編集・削除が本番環境で動作することを確認する
 
 ## 完了条件
 
-- 本番 URL でアプリが正常に動作する
-- Supabase との接続が本番環境で確立されている
+- [x] 本番 URL でアプリが正常に動作する
+- [x] Supabase との接続が本番環境で確立されている

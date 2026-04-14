@@ -15,14 +15,14 @@ function AddItemForm({ locationId }: { locationId: string }) {
   }, [state])
 
   return (
-    <section className="mt-8 border-t border-gray-200 pt-6">
-      <h2 className="text-base font-semibold text-gray-800 mb-4">
-        お土産を追加
+    <section className="mt-8 border-t-2 border-[#FFE8F0] pt-6">
+      <h2 className="text-base font-bold text-[#E05A7A] mb-4 flex items-center gap-1">
+        🎁 おみやげを追加
       </h2>
       <form ref={formRef} action={formAction} className="flex flex-col gap-3">
         <div>
-          <label htmlFor="add-name" className="block text-sm font-medium text-gray-700 mb-1">
-            お土産名 <span className="text-red-500">*</span>
+          <label htmlFor="add-name" className="block text-sm font-medium text-[#8B6B8C] mb-1">
+            おみやげ名 <span className="text-[#FF8FAB]">*</span>
           </label>
           <input
             id="add-name"
@@ -30,25 +30,25 @@ function AddItemForm({ locationId }: { locationId: string }) {
             type="text"
             required
             placeholder="例: じゃがポックル"
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border-2 border-[#FFD6E7] rounded-2xl px-4 py-2.5 text-sm text-[#5C3D5E] placeholder-[#DDB8DD] bg-[#FDFDF8] focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="add-date" className="block text-sm font-medium text-gray-700 mb-1">
-            購入日 <span className="text-red-500">*</span>
+          <label htmlFor="add-date" className="block text-sm font-medium text-[#8B6B8C] mb-1">
+            購入日 <span className="text-[#FF8FAB]">*</span>
           </label>
           <input
             id="add-date"
             name="purchased_at"
             type="date"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border-2 border-[#FFD6E7] rounded-2xl px-4 py-2.5 text-sm text-[#5C3D5E] bg-[#FDFDF8] focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="add-memo" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="add-memo" className="block text-sm font-medium text-[#8B6B8C] mb-1">
             メモ
           </label>
           <textarea
@@ -56,20 +56,22 @@ function AddItemForm({ locationId }: { locationId: string }) {
             name="memo"
             rows={2}
             placeholder="任意のメモ"
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border-2 border-[#FFD6E7] rounded-2xl px-4 py-2.5 text-sm text-[#5C3D5E] placeholder-[#DDB8DD] bg-[#FDFDF8] resize-none focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
           />
         </div>
 
         {state && 'error' in state && (
-          <p role="alert" className="text-red-500 text-sm">{state.error}</p>
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-2xl px-4 py-2">
+            <p className="text-red-400 text-sm">{state.error}</p>
+          </div>
         )}
 
         <button
           type="submit"
           disabled={isPending}
-          className="self-start bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          className="self-start bg-[#FF8FAB] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#E05A7A] disabled:opacity-50 transition-all shadow-md shadow-pink-100 hover:-translate-y-0.5"
         >
-          {isPending ? '追加中...' : '追加する'}
+          {isPending ? '追加中...' : '＋ 追加する'}
         </button>
       </form>
     </section>
@@ -94,22 +96,22 @@ function EditItemForm({
   }, [state, onCancel])
 
   return (
-    <form action={formAction} className="flex flex-col gap-3 py-3">
+    <form action={formAction} className="flex flex-col gap-3 py-3 bg-[#FDFDF8] rounded-2xl px-4">
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           name="name"
           type="text"
           required
           defaultValue={item.name}
-          placeholder="お土産名"
-          className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="おみやげ名"
+          className="flex-1 border-2 border-[#FFD6E7] rounded-2xl px-3 py-2 text-sm text-[#5C3D5E] bg-white focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
         />
         <input
           name="purchased_at"
           type="date"
           required
           defaultValue={item.purchased_at}
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border-2 border-[#FFD6E7] rounded-2xl px-3 py-2 text-sm text-[#5C3D5E] bg-white focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
         />
       </div>
       <textarea
@@ -117,25 +119,25 @@ function EditItemForm({
         rows={2}
         defaultValue={item.memo ?? ''}
         placeholder="メモ（任意）"
-        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full border-2 border-[#FFD6E7] rounded-2xl px-3 py-2 text-sm text-[#5C3D5E] bg-white resize-none focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
       />
 
       {state && 'error' in state && (
-        <p role="alert" className="text-red-500 text-sm">{state.error}</p>
+        <p role="alert" className="text-red-400 text-sm">{state.error}</p>
       )}
 
       <div className="flex gap-2">
         <button
           type="submit"
           disabled={isPending}
-          className="bg-blue-600 text-white px-3 py-1.5 rounded-md text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          className="bg-[#FF8FAB] text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-[#E05A7A] disabled:opacity-50 transition-all"
         >
-          {isPending ? '保存中...' : '保存'}
+          {isPending ? '保存中...' : '✓ 保存'}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="text-gray-600 px-3 py-1.5 rounded-md text-sm hover:bg-gray-100 transition-colors"
+          className="text-[#C4A5C4] px-4 py-1.5 rounded-full text-sm hover:bg-[#FFE8F0] hover:text-[#8B6B8C] transition-all"
         >
           キャンセル
         </button>
@@ -172,11 +174,18 @@ export function ItemList({ locationId, items }: Props) {
     <div>
       {/* お土産一覧 */}
       {items.length === 0 ? (
-        <p className="text-gray-500 py-8 text-center">まだお土産がありません</p>
+        <div className="text-center py-12">
+          <p className="text-4xl mb-3">🐰</p>
+          <p className="text-[#C4A5C4] font-medium">まだおみやげがないよ</p>
+          <p className="text-sm text-[#DDB8DD] mt-1">下のフォームから追加してね ↓</p>
+        </div>
       ) : (
-        <ul className="flex flex-col divide-y divide-gray-100">
+        <ul className="flex flex-col gap-3">
           {items.map((item) => (
-            <li key={item.id} className="py-3">
+            <li
+              key={item.id}
+              className="bg-white border-2 border-[#FFE8F0] rounded-2xl overflow-hidden"
+            >
               {editingItemId === item.id ? (
                 <EditItemForm
                   item={item}
@@ -184,29 +193,31 @@ export function ItemList({ locationId, items }: Props) {
                   onCancel={() => setEditingItemId(null)}
                 />
               ) : (
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex items-start justify-between gap-3 px-4 py-3">
                   <div className="min-w-0">
-                    <p className="font-medium text-gray-900">{item.name}</p>
-                    <p className="text-sm text-gray-500">
-                      {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
+                    <p className="font-bold text-[#5C3D5E]">{item.name}</p>
+                    <p className="text-sm text-[#C4A5C4] mt-0.5">
+                      📅 {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
                     </p>
                     {item.memo && (
-                      <p className="text-sm text-gray-600 mt-1">{item.memo}</p>
+                      <p className="text-sm text-[#8B6B8C] mt-1.5 bg-[#FEF6EC] rounded-xl px-3 py-1.5">
+                        {item.memo}
+                      </p>
                     )}
                   </div>
-                  <div className="flex gap-2 shrink-0">
+                  <div className="flex gap-1.5 shrink-0">
                     <button
                       onClick={() => setEditingItemId(item.id)}
-                      className="text-sm text-gray-500 hover:text-blue-600 transition-colors"
+                      className="text-xs text-[#8B6B8C] font-medium bg-[#FEF6EC] hover:bg-[#FFD6E7] px-3 py-1.5 rounded-full transition-all"
                     >
-                      編集
+                      ✏️ 編集
                     </button>
                     <button
                       onClick={() => handleDelete(item)}
                       disabled={deletingIds.has(item.id)}
-                      className="text-sm text-gray-500 hover:text-red-600 disabled:opacity-50 transition-colors"
+                      className="text-xs text-[#C4A5C4] font-medium bg-[#FEF6EC] hover:bg-red-100 hover:text-red-400 px-3 py-1.5 rounded-full disabled:opacity-50 transition-all"
                     >
-                      {deletingIds.has(item.id) ? '削除中...' : '削除'}
+                      {deletingIds.has(item.id) ? '削除中...' : '🗑️ 削除'}
                     </button>
                   </div>
                 </div>

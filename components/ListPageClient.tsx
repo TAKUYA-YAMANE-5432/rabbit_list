@@ -38,9 +38,9 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
           value={locationFilter}
           onChange={handleLocationChange}
           aria-label="場所で絞り込み"
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border-2 border-[#FFD6E7] rounded-full px-4 py-2 text-sm text-[#5C3D5E] bg-white focus:outline-none focus:border-[#FF8FAB] focus:ring-2 focus:ring-[#FFD6E7] transition-colors"
         >
-          <option value="">すべての場所</option>
+          <option value="">🗾 すべての場所</option>
           {locations.map((loc) => (
             <option key={loc.id} value={loc.name}>
               {loc.name}
@@ -51,23 +51,29 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
         <button
           onClick={handleSortToggle}
           aria-label={`場所名${sortDir === 'asc' ? '降順' : '昇順'}に並べ替え`}
-          className="flex items-center gap-1 border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-1.5 border-2 border-[#FFD6E7] rounded-full px-4 py-2 text-sm text-[#8B6B8C] bg-white hover:border-[#FF8FAB] hover:text-[#E05A7A] transition-all"
         >
           場所名
           <span className="text-xs">{sortDir === 'asc' ? '↑' : '↓'}</span>
         </button>
 
-        <span className="text-sm text-gray-500 ml-auto">
-          {items.length} 件
+        <span className="text-sm text-[#C4A5C4] ml-auto bg-[#FFE8F0] px-3 py-1 rounded-full font-medium">
+          🎁 {items.length} 件
         </span>
       </div>
 
       {/* 件数 0 */}
       {items.length === 0 && (
-        <div className="text-center py-16 text-gray-500">
-          <p className="text-lg mb-2">お土産がまだ登録されていません</p>
-          <Link href="/" className="text-sm text-blue-600 hover:underline">
-            地図から場所を選んで追加する
+        <div className="text-center py-16">
+          <p className="text-5xl mb-4">🐰</p>
+          <p className="text-lg font-bold text-[#C4A5C4] mb-2">
+            おみやげがまだ登録されていないよ
+          </p>
+          <Link
+            href="/"
+            className="text-sm text-[#E05A7A] hover:underline font-medium"
+          >
+            地図から場所を選んで追加する →
           </Link>
         </div>
       )}
@@ -75,39 +81,39 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
       {/* PC: テーブル */}
       {items.length > 0 && (
         <>
-          <div className="hidden md:block overflow-x-auto">
+          <div className="hidden md:block bg-white rounded-3xl border-2 border-[#FFD6E7] overflow-hidden shadow-sm">
             <table className="w-full text-sm border-collapse">
               <thead>
-                <tr className="border-b border-gray-200 text-left text-gray-500">
-                  <th className="pb-2 pr-4 font-medium">お土産名</th>
-                  <th className="pb-2 pr-4 font-medium">場所</th>
-                  <th className="pb-2 pr-4 font-medium">購入日</th>
-                  <th className="pb-2 font-medium">メモ</th>
-                  <th className="pb-2" />
+                <tr className="bg-[#FDF6EC] text-[#8B6B8C]">
+                  <th className="px-5 py-3 text-left font-bold">🎁 お土産名</th>
+                  <th className="px-5 py-3 text-left font-bold">📍 場所</th>
+                  <th className="px-5 py-3 text-left font-bold">📅 購入日</th>
+                  <th className="px-5 py-3 text-left font-bold">📝 メモ</th>
+                  <th className="px-5 py-3" />
                 </tr>
               </thead>
               <tbody>
-                {items.map((item) => (
+                {items.map((item, i) => (
                   <tr
                     key={item.id}
-                    className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                    className={`border-t border-[#FFE8F0] hover:bg-[#FDFDF8] transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-[#FDFDF8]'}`}
                   >
-                    <td className="py-3 pr-4 font-medium text-gray-900">
+                    <td className="px-5 py-3.5 font-medium text-[#5C3D5E]">
                       {item.name}
                     </td>
-                    <td className="py-3 pr-4 text-gray-600">
+                    <td className="px-5 py-3.5 text-[#8B6B8C]">
                       {item.locations.name}
                     </td>
-                    <td className="py-3 pr-4 text-gray-600 whitespace-nowrap">
+                    <td className="px-5 py-3.5 text-[#8B6B8C] whitespace-nowrap">
                       {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
                     </td>
-                    <td className="py-3 text-gray-500 max-w-xs truncate">
+                    <td className="px-5 py-3.5 text-[#C4A5C4] max-w-xs truncate">
                       {item.memo ?? '—'}
                     </td>
-                    <td className="py-3 pl-4">
+                    <td className="px-5 py-3.5">
                       <Link
                         href={`/locations/${item.locations.id}`}
-                        className="text-blue-600 hover:text-blue-800 text-xs font-medium"
+                        className="text-[#E05A7A] hover:text-white hover:bg-[#FF8FAB] text-xs font-bold px-3 py-1 rounded-full border border-[#FFB3CC] hover:border-[#FF8FAB] transition-all whitespace-nowrap"
                       >
                         詳細 →
                       </Link>
@@ -123,23 +129,25 @@ export function ListPageClient({ items, locations, locationFilter, sortDir }: Pr
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-gray-200 rounded-lg p-4"
+                className="bg-white border-2 border-[#FFD6E7] rounded-3xl p-4 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <p className="font-medium text-gray-900">{item.name}</p>
+                  <p className="font-bold text-[#5C3D5E]">{item.name}</p>
                   <Link
                     href={`/locations/${item.locations.id}`}
-                    className="text-blue-600 hover:text-blue-800 text-xs font-medium whitespace-nowrap"
+                    className="text-[#E05A7A] text-xs font-bold whitespace-nowrap bg-[#FFE8F0] px-2.5 py-1 rounded-full hover:bg-[#FF8FAB] hover:text-white transition-all"
                   >
                     詳細 →
                   </Link>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">{item.locations.name}</p>
-                <p className="text-xs text-gray-400 mt-1">
-                  {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
+                <p className="text-sm text-[#8B6B8C] mt-1.5 flex items-center gap-1">
+                  <span>📍</span> {item.locations.name}
+                </p>
+                <p className="text-xs text-[#C4A5C4] mt-1">
+                  📅 {new Date(item.purchased_at).toLocaleDateString('ja-JP')}
                 </p>
                 {item.memo && (
-                  <p className="text-sm text-gray-500 mt-2 border-t border-gray-100 pt-2">
+                  <p className="text-sm text-[#8B6B8C] mt-2 border-t border-[#FFE8F0] pt-2">
                     {item.memo}
                   </p>
                 )}
