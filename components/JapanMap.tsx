@@ -80,22 +80,21 @@ export function JapanMap({
 
       {/*
         沖縄インセット（左上）
-        - w-80 (320px) = 元の 2 倍サイズ
-        - viewBox prop を渡すと react-simple-maps のプロジェクション計算は
-          デフォルト 800×600 のまま、SVG だけ 240×155 にクリップされ沖縄が
-          見えなくなるバグがあるため、width/height prop で渡す
-        - width=320 height=200 → translate=[160,100]
-        - center [126, 25.8], scale 960 で与那国〜沖縄本島〜南大東まで収める
+        - w-60 (240px) × height:auto → SVG 150px = 約 240×150px 表示
+        - width/height prop で渡すことで projection の translate が
+          正しく [120, 75] になる（viewBox prop では 800×600 デフォルト値のまま）
+        - scale 3000（前回 960 の約 3 倍）で沖縄本島を大きく表示
+        - center [128.0, 26.5] で沖縄本島中心に合わせる
       */}
-      <div className="absolute top-2 left-2 w-80 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
+      <div className="absolute top-2 left-2 w-60 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
         <p className="text-[10px] text-center text-[#8B6B8C] font-bold py-0.5 bg-[#FFF0F5]">
           沖縄県
         </p>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ center: [126, 25.8], scale: 960 }}
-          width={320}
-          height={200}
+          projectionConfig={{ center: [128.0, 26.5], scale: 3000 }}
+          width={240}
+          height={150}
           style={{ width: '100%', height: 'auto', display: 'block' }}
           aria-label="沖縄県"
         >
