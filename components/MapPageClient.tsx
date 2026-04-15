@@ -28,11 +28,14 @@ interface Props {
 export function MapPageClient({ prefectureLocations, customLocations }: Props) {
   const [selectedPrefecture, setSelectedPrefecture] = useState<string | null>(null)
 
-  const activePrefectures = new Set(
-    prefectureLocations
+  const activePrefectures = new Set([
+    ...prefectureLocations
       .filter((l) => l.items.length > 0)
-      .map((l) => l.prefecture!)
-  )
+      .map((l) => l.prefecture!),
+    ...customLocations
+      .filter((l) => l.items.length > 0 && l.prefecture)
+      .map((l) => l.prefecture!),
+  ])
 
   // 選択された県に属する都道府県ロケーション
   const selectedLocation = selectedPrefecture
