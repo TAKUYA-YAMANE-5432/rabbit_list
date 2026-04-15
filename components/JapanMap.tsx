@@ -86,7 +86,7 @@ export function JapanMap({
         - scale 3000（前回 960 の約 3 倍）で沖縄本島を大きく表示
         - center [128.0, 26.5] で沖縄本島中心に合わせる
       */}
-      <div className="absolute top-2 left-2 w-60 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
+      <div className="absolute top-2 left-2 w-1/3 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
         <p className="text-[10px] text-center text-[#8B6B8C] font-bold py-0.5 bg-[#FFF0F5]">
           沖縄県
         </p>
