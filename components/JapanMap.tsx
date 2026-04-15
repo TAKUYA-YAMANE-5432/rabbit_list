@@ -80,38 +80,43 @@ export function JapanMap({
 
       {/*
         沖縄インセット（左上）
-        - w-40 (160px) で明示的な幅を確保（これがなかったため <p> 幅で div がつぶれ
-          SVG が overflow-hidden でクリップされて何も見えなかった）
-        - 沖縄本島は SVG 内 x≈183/240 → 表示上 x≈122/160 → 160px 内に収まる
-        - scale 2000, center [126, 26] で与那国〜沖縄本島を網羅
+        - w-80 (320px) = 元の 2 倍サイズ
+        - viewBox prop を渡すと react-simple-maps のプロジェクション計算は
+          デフォルト 800×600 のまま、SVG だけ 240×155 にクリップされ沖縄が
+          見えなくなるバグがあるため、width/height prop で渡す
+        - width=320 height=200 → translate=[160,100]
+        - center [126, 25.8], scale 960 で与那国〜沖縄本島〜南大東まで収める
       */}
-      <div className="absolute top-2 left-2 w-40 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
+      <div className="absolute top-2 left-2 w-80 bg-white/95 rounded-2xl border-2 border-[#FFD6E7] shadow-sm overflow-hidden">
         <p className="text-[10px] text-center text-[#8B6B8C] font-bold py-0.5 bg-[#FFF0F5]">
           沖縄県
         </p>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ center: [126, 26], scale: 2000 }}
-          viewBox="0 0 240 155"
+          projectionConfig={{ center: [126, 25.8], scale: 960 }}
+          width={320}
+          height={200}
           style={{ width: '100%', height: 'auto', display: 'block' }}
           aria-label="沖縄県"
         >
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
-              geographies.map((geo) => {
-                const prefName = geo.properties.nam_ja as string
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    onClick={() => onPrefectureClick(prefName)}
-                    role="button"
-                    aria-label={prefName}
-                    aria-pressed={selectedPrefecture === prefName}
-                    style={getStyle(prefName)}
-                  />
-                )
-              })
+              geographies
+                .filter((geo) => geo.properties.nam_ja === '沖縄県')
+                .map((geo) => {
+                  const prefName = geo.properties.nam_ja as string
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onClick={() => onPrefectureClick(prefName)}
+                      role="button"
+                      aria-label={prefName}
+                      aria-pressed={selectedPrefecture === prefName}
+                      style={getStyle(prefName)}
+                    />
+                  )
+                })
             }
           </Geographies>
         </ComposableMap>
